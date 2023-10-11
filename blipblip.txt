@@ -1,0 +1,51 @@
+< let ,  >
+< ID , 99999 >
+< boolean ,  >
+< semicolon ,  >
+< let ,  >
+< ID , 99999 >
+< int ,  >
+< semicolon ,  >
+< get ,  >
+< ID , 99999 >
+< semicolon ,  >
+< put ,  >
+< ID , 99999 >
+< semicolon ,  >
+< get ,  >
+< ID , 99999 >
+< semicolon ,  >
+< put ,  >
+< ID , 99999 >
+< sub ,  >
+< ID , 99999 >
+< semicolon ,  >
+< ID , 99999 >
+< assign ,  >
+< ID , 99999 >
+< greaterThan ,  >
+< ID , 99999 >
+< semicolon ,  >
+< if ,  >
+< parenthOpen ,  >
+< ID , 99999 >
+< parenthClose ,  >
+< ID , 99999 >
+< assign ,  >
+< ID , 99999 >
+< sub ,  >
+< INTEGER , 7 >
+< mul ,  >
+< ID , 99999 >
+< mul ,  >
+< parenthOpen ,  >
+< INTEGER , 1 >
+< mul ,  >
+< INTEGER , 2 >
+< mul ,  >
+< ID , 99999 >
+< parenthClose ,  >
+< mul ,  >
+< INTEGER , 3 >
+< semicolon ,  >
+< EOF ,  >
