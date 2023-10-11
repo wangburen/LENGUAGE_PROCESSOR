@@ -20,8 +20,8 @@ public class Writer {
         }
     }
 
-    public void write(Token tok){
-        printw.println(tok);
+    public void write(Object obj){
+        printw.println(obj);
     }
 
     public void close(){

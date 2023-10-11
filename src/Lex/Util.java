@@ -13,6 +13,14 @@ public class Util {
 		F15,F16,F17,F20,F22,F24,F26
 	}
 
+	public static enum Type {
+		INT, STRING, FUNCTION, BOOLEAN
+	}
+
+	public static enum Mode {
+		VALUE, REFERENCE
+	}
+
 	public static boolean contains(String[] list, String elem) {
 		for (String s : list) {
 			if (s.equals(elem)) return true;

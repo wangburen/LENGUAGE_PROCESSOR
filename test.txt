@@ -1,1 +1,14 @@
-let a int;
+let textoOO string;
+function print void(string m_m_g)
+{
+	put "Mensaje introducido:";
+	put m_s_g;
+}
+function pideTexto void ( void )
+{
+	put "Introduce un texto corto";
+	get texto;
+}
+pideTextoOtra();
+  print3
+	(textoO);

@@ -17,7 +17,7 @@ public class FSM {
 	{
 		String car = Character.toString(ch);
 
-    	Pattern delimiters = Pattern.compile("[ \\t]"); //Delimiters
+    	Pattern delimiters = Pattern.compile("[ \\t]"); 		//Delimiters
     	Pattern letters = Pattern.compile("[a-zA-Z]");        //Letters
     	Pattern digits = Pattern.compile("[0-9]");            //Digits
     	Pattern c = Pattern.compile("[^\"\\n\"\\\\]");        //Any character except EOL, "", \

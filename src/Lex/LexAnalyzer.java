@@ -1,9 +1,13 @@
 package Lex;
 
 import Lex.Util.Action;
+import Sym.SymbolTable;
 
 public class LexAnalyzer {
 	
+	private SymbolTable st = new SymbolTable(1); //TODO: ESTO HAY QUE HACER QUE LO LEA DE FUERA O ALGO ASI. TIENE Q BUSCAR LA TABLA ACTIVA
+	private Writer writerST; //TODO: QUITAR DE AQUI LUEGO???
+
 	private FSM automata; 
 	private Reader reader;
 	private Writer writer;
@@ -16,16 +20,23 @@ public class LexAnalyzer {
 
 	private int line = 1;
 
-	public LexAnalyzer(String sourceFileName, String destinyFileName) 
+	public LexAnalyzer(String sourceFileName, String destinyFileName, /* TODO: QUITAR ESTO?*/ String STDestinyFile) 
 	{
 		this.automata = new FSM();
 		this.reader = new Reader(sourceFileName);
 		this.writer = new Writer(destinyFileName);
 		this.c = reader.read();
+
+		this.writerST = new Writer(STDestinyFile); //TODO: QUITAR ESTO???
 	}
 
-	private void GestorErrores(int line) throws Exception
+	// TODO: DEFINIR ERORRES
+	private void ErrorManager(String lex) throws Exception
 	{
+		System.out.println(lex);
+		System.out.println(automata.getState());
+		reader.close();
+		writer.close();
 		throw new Exception("ERROR ON LINE " + Integer.toString(line) + "!!!");
 	}
 
@@ -53,7 +64,7 @@ public class LexAnalyzer {
 		{
 			Action[] actions = automata.transit(c);
 
-			if (actions == null) { reader.close(); writer.close(); GestorErrores(this.line); } //Study cases...
+			if (actions == null) { reader.close(); writer.close(); ErrorManager(""); } //Study cases...
 
 			for (Action a : actions)
 			{
@@ -189,19 +200,25 @@ public class LexAnalyzer {
 						}
 						else
 						{
-							//SEARCH ST
-							tokenGenerated = new Token("ID", 99999);
+							//TODO: AÑADIR ZONA DE DECLARACION ?????? CUIDADITO COÑO
+							Integer p =  st.getPos(lex);
+							
+							// If the lexeme is already on the Symbol Table, then call the Error Manager (TODO: ESTO SE CORRESPONDE A Q SE INTENTO DECLARAR LA VARIABLE CON OTRO TIPO, POR EJ)
+							if (p != null) ErrorManager(lex);
+							
+							// Else, insert the lexeme and generate the token
+							else {p = st.insertLex(lex); tokenGenerated = new Token("ID", p);}
 						}
 						break;
 
 					case G16:
 						if (num <= MAX_INT) tokenGenerated = new Token("INTEGER", num);
-						else GestorErrores(line); //LLAMAR GESTOR ERRORES!!!!!!!
+						else ErrorManager(Integer.toString(num)); //LLAMAR GESTOR ERRORES!!!!!!!
 						break;
 
 					case G17:
 						if(lexSize <= MAX_STR) tokenGenerated = new Token("STRING", lex);
-						else GestorErrores(line); //LLAMAR GESTOR ERRORES!!!!!!!
+						else ErrorManager(lex); //LLAMAR GESTOR ERRORES!!!!!!!
 						break;
 
 					case G20:
@@ -230,15 +247,15 @@ public class LexAnalyzer {
 		return tokenGenerated; //!= null ? tokenGenerated : null; //LLAMAR A GESTOR DE ERRORES!!!! QUITAR ESE = A NULL!!
 	}
 
-	public void closeReader() { this.reader.close(); }
+	public void closeReader() { this.reader.close();}
 
-	public void closeWriter() { this.writer.close(); }
+	public void closeWriter() { this.writer.close(); /* TODO: QUITAR ESTO??*/ this.writerST.write(this.st); this.writerST.close();}
 
 	public static void main(String[] args){
 
 		Token EOF = new Token("EOF", null);
 		try{
-			LexAnalyzer la = new LexAnalyzer("PIdG54.txt", "blipblip.txt");
+			LexAnalyzer la = new LexAnalyzer("test.txt", "blipblip.txt", "blupblup.txt");
 			Token genTok = la.getNextToken();
 			//System.out.println(genTok);
 			while (!genTok.equals(EOF))
