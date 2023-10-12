@@ -14,11 +14,11 @@
 < STRING , Mensaje introducido: >
 < semicolon ,  >
 < put ,  >
-< ID , 3 >
+< ID , 2 >
 < semicolon ,  >
 < bracketClose ,  >
 < function ,  >
-< ID , 4 >
+< ID , 3 >
 < void ,  >
 < parenthOpen ,  >
 < void ,  >
@@ -28,16 +28,16 @@
 < STRING , Introduce un texto corto >
 < semicolon ,  >
 < get ,  >
-< ID , 5 >
+< ID , 0 >
 < semicolon ,  >
 < bracketClose ,  >
-< ID , 6 >
+< ID , 3 >
 < parenthOpen ,  >
 < parenthClose ,  >
 < semicolon ,  >
-< ID , 7 >
+< ID , 1 >
 < parenthOpen ,  >
-< ID , 8 >
+< ID , 0 >
 < parenthClose ,  >
 < semicolon ,  >
 < EOF ,  >
